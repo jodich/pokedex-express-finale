@@ -8,7 +8,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const cookieParser = require('cookie-parser');
-const db = require('./db');
+// const db = require('./db');
 
 /**
  * ===================================
@@ -23,13 +23,13 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(cookieParser());
-
+app.use(express.static('public'));
 
 // Set jsx to be the default view engine
 const reactEngine = require('express-react-views').createEngine();
-
-
-
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jsx');
+app.engine('jsx', reactEngine);
 
 /**
  * ===================================
@@ -38,11 +38,15 @@ const reactEngine = require('express-react-views').createEngine();
  */
 
 // Import routes to match incoming requests
+require('./routes')(app);
 
 // Root GET request (it doesn't belong in any controller file)
+app.get('/', (request, response) => {
+	response.redirect('/pokemon')
+})
 
 // Catch all unmatched requests and return 404 not found page
-require('./routes')(app, db);
+
 
 /**
  * ===================================

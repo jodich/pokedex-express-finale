@@ -1,0 +1,185 @@
+body {
+	box-sizing: border-box;
+	font-family: 'Work Sans', sans-serif;
+}
+
+a {
+	cursor: default;
+}
+
+.main {
+	padding: 30px;
+	width: 70%;
+	margin: 0 auto;
+}
+
+h1, h2, h3, h4{
+	text-align: center;
+}
+
+img {
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+}
+
+.all_thumbnail {
+	margin: 0 10px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+.thumbnail {
+	width: 160px;
+	/*height: 232px;*/
+	margin: 20px;
+	padding: 10px;
+	text-align: center;
+}
+
+.pokemon_name {
+	color: black;
+	font-family: 'Work Sans', sans-serif;
+}
+
+.pokemon_img {
+	background-color: #F2F2F2;
+	border-radius: 0.8rem;
+	margin: 8px 8px 5px 8px;
+	padding: 10px;
+}
+
+.pokemon_num {
+	font-size: 0.9rem;
+	font-family: 'Roboto Mono', monospace;
+	margin: 10px;
+}
+
+.welcome {
+	clear: both;
+}
+
+
+
+
+/*nav bar*/
+.navigation {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: 0 auto;
+	margin-bottom: 40px;
+	text-align: center;
+	/*background-color: #41CBDB;*/
+	border-bottom: 1px solid #41CBDB;
+}
+
+.navigation div {
+	display: inline-block;
+	padding: 10px;
+}
+
+/*button box*/
+.form_style {
+	display: inline-block;
+	margin: 0px 10px 0px 10px;
+}
+
+/*inside the button*/
+.btn {
+	background-color: rgba(255,255,255,0);
+	border: none;
+	padding: 10px;
+	color: #33A9B6;
+	font-size: 12px;
+}
+
+.thumbnail_btn {
+	display: inline-block;
+}
+
+.thumbnail .btn {
+	padding: 0;
+	margin: 0px 15px 0px 15px;
+	color: grey;
+}
+
+/*.link_nav {
+	text-decoration: none;
+	color: black;
+	font-size: 11px;
+	padding: 10px;
+	margin: 20px 20px;
+}*/
+
+
+
+
+
+.all_forms {
+	text-align: center;
+	margin-top: 50px;
+}
+
+.edit {
+	margin-top: 0px;
+}
+
+.form_page .pokemon-attribute{
+	display: inline-block;
+}
+
+.form_page .create{
+	display: block;
+}
+
+.input_style {
+	margin: 10px;
+	width: 200px;
+	height: 15px;
+	padding: 10px;
+}
+
+.btn_input_style {
+	background-color: rgba(255,255,255,0);
+	border: none;
+	padding: 10px;
+	font-size: 0.8rem;
+}
+
+.pokemon-form .btn_input_style {
+	margin-top: 30px;
+}
+
+
+
+
+
+.del {
+	border: 1px solid #C0C0C0;
+	border-radius: 5px;
+	padding: 10px 20px 10px 20px;
+}
+
+
+.pokemon-list {
+	/*background-color: red;*/
+	text-align: center;
+	margin: 50px;
+}
+
+.pokemon-list .pokemon-attribute {
+	width: 50%;
+	margin: 0 auto;
+	/*background-color: blue;*/
+	padding: 5px;
+}
+
+
+
+
+
+
+

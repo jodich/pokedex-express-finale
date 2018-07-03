@@ -1,33 +1,65 @@
-/**
- * User model functions.
- *
- * Any time a database SQL query needs to be executed
- * relating to a user (be it C, R, U, D, or Login),
- * one or more of the functions here should be called.
- *
- * NOTE: You can add authentication logic in this model.
- *
- * Export all functions as a module using `module.exports`,
- * to be imported (using `require(...)`) in `db.js`.
- */
+const pool = require('../db');
+const sha256 = require('js-sha256');
 
-/**
- * ===========================================
- * Export model functions as a module
- * ===========================================
- */
+const SALT = 'banana'
+// models
+const createNewUser = (email, password, callback) => {
 
-module.exports = function(db){
+	let queryString = 'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING *';
+	let values = [email, password];
 
-
-    let example = function(email, password_hash, callback){
-        let queryText = 'INSERT INTO users (email, password_hash) VALUES ($1, $2) RETURNING *';
-
-        const values = [email, password_hash];
-        db.query(queryText, values, callback);
-    };
-
-    return {
-        example : example
-    };
+	pool.query(queryString, values, callback);
+	// callback would be an anonymous function that does stuff with the returned information
 };
+
+  	// can get via id, email or password. Just need to specifiy in identifier
+const getUser = (identifier, value, callback) => {
+
+  	let queryString = 'SELECT * FROM users WHERE '+identifier+' = $1';
+  	let values = [value];
+
+  	pool.query(queryString, values, callback)
+};
+
+const userPoke = (userId, callback) => {
+	let queryString = "SELECT pokemons.* FROM users INNER JOIN users_pokemons ON (users_pokemons.user_id = users.id) INNER JOIN pokemons ON (users_pokemons.pokemon_id = pokemons.id) WHERE is_deleted='false' AND users_pokemons.user_id = ($1) ORDER BY id";
+    let values = [userId];
+
+    pool.query(queryString, values, callback)
+};
+
+const checkAuth = (userId, hasedCookie) => {
+
+	if (sha256(userId + SALT) === hasedCookie) {
+		return true
+	} else {
+		return false
+	}
+};
+
+const setAuth = (userId, response) => {
+
+	let currentSessionCookie = sha256(userId + SALT);
+	response.cookie('logged_in', currentSessionCookie)
+
+};
+
+
+
+// EXPORT MODELS
+module.exports = {
+	createNewUser,
+	getUser,
+	userPoke,
+	checkAuth,
+	setAuth
+}
+
+
+
+
+
+
+
+
+
